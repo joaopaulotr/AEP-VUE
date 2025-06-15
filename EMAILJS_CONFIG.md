@@ -34,10 +34,10 @@ No arquivo `src/components/FormularioDenunciaComponent.vue`, substitua:
 
 ```javascript
 await emailjs.send(
-  'YOUR_SERVICE_ID',    // Substitua pelo seu Service ID
-  'YOUR_TEMPLATE_ID',   // Substitua pelo seu Template ID
+  'service_vr41i3g',    
+  'template_tgv8di1',   
   templateParams,
-  'YOUR_PUBLIC_KEY'     // Substitua pela sua Public Key
+  '3nSUNpd-7sFpGl6fz'  
 );
 ```
 

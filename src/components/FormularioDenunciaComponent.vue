@@ -227,6 +227,21 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal de Sucesso -->
+      <div v-if="showSuccessModal" class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content p-4 text-center">
+            <button type="button" class="btn-close ms-auto mb-2" @click="showSuccessModal = false"></button>
+            <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+            <h4 class="mb-3">Denúncia enviada!</h4>
+            <p class="mb-2">Sua denúncia foi enviada com sucesso.</p>
+            <p>Verifique o e-mail <strong>{{ successModalEmail }}</strong> para a confirmação.</p>
+            <p class="mb-0">Obrigado pela sua colaboração!</p>
+            <button class="btn btn-primary mt-4" @click="showSuccessModal = false">Fechar</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -251,7 +266,10 @@ export default {
       isSubmitting: false,
       isDragOver: false,
       gettingLocation: false,
-      imagePreview: null
+      imagePreview: null,
+      // Adiciona propriedades para o modal
+      showSuccessModal: false,
+      successModalEmail: '',
     }
   },
   methods: {
@@ -328,25 +346,22 @@ export default {
         // Dados para o template de e-mail
         const templateParams = {
           from_name: this.form.nomeCompleto,
-          from_email: this.form.email,
+          email: this.form.email, // <- campo correto para o destinatário
           tipo_ocorrencia: this.form.tipoOcorrencia,
           localizacao: this.form.localizacao,
           descricao: this.form.descricao,
-          to_email: this.form.email, // E-mail de confirmação para o usuário
           reply_to: this.form.email
         };
 
         // Enviar e-mail de confirmação para o usuário
         // NOTA: Para usar em produção, você precisa configurar sua conta EmailJS
         // e substituir os IDs abaixo pelos seus próprios IDs
-        /*
         await emailjs.send(
-          'YOUR_SERVICE_ID',    // Substitua pelo seu Service ID
-          'YOUR_TEMPLATE_ID',   // Substitua pelo seu Template ID
+          'service_vr41i3g',    // Service ID
+          'template_tgv8di1',   // Template ID
           templateParams,
-          'YOUR_PUBLIC_KEY'     // Substitua pela sua Public Key
+          '3nSUNpd-7sFpGl6fz'  // Public Key
         );
-        */
 
         // Simulação de envio bem-sucedido
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -357,6 +372,8 @@ export default {
         });
         
         this.showSuccessAlert = true;
+        this.successModalEmail = this.form.email;
+        this.showSuccessModal = true;
         this.resetForm();
         
         // Scroll para o topo do formulário
@@ -537,6 +554,26 @@ export default {
 .alert {
   border-radius: 8px;
   border: none;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body {
+  padding: 1.5rem 0;
+}
+
+.modal-footer {
+  border-top: none;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
