@@ -1,5 +1,8 @@
 # Denúncias Urbanas
 
+## 🌐 Deploy em Produção
+👉 **https://aep-esoft3s.netlify.app/**
+
 Projeto desenvolvido em Vue.js para facilitar o registro de denúncias de problemas urbanos, como buracos, lixo acumulado, iluminação pública, entre outros. O objetivo é aproximar o cidadão do poder público, tornando o processo de denúncia mais simples, rápido e transparente.
 
 ## 🚀 Funcionalidades
@@ -32,11 +35,6 @@ Projeto desenvolvido em Vue.js para facilitar o registro de denúncias de proble
    npm run dev
    ```
 4. Acesse em [http://localhost:3000](http://localhost:3000)
-
-## 🌐 Deploy
-O projeto está publicado em produção e pode ser acessado em:
-
-👉 **https://aep-esoft3s.netlify.app/**
 
 O deploy é feito no [Netlify](https://www.netlify.com/) e pode ser atualizado facilmente rodando:
 ```bash
